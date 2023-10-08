@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply flex items-center justify-center;
+}
+
 #app {
   max-width: 960px;
   margin: 0 auto;
