@@ -42,14 +42,12 @@ import RotateIcon from '@/components/RotateIcon.vue';
 
 <style scoped>
 
-.app-content {}
-
 .title {
-  @apply text-4xl font-bold text-center text-gray-400;
+  @apply text-2xl font-bold text-center text-gray-300;
 }
 
 .timer-text {
-  @apply text-9xl font-bold text-center;
+  @apply text-7xl font-bold text-center text-gray-100 mt-8;
 }
 
 .flex-container {
@@ -57,16 +55,33 @@ import RotateIcon from '@/components/RotateIcon.vue';
 }
 
 .colon {
-  @apply pb-8 text-gray-500 h-max;
+  @apply pb-4 text-gray-300;
 }
 
 .timer-controls {
-  @apply flex justify-center;
+  @apply flex justify-center mt-8;
 }
 
 .control-button {
-  @apply px-6 py-4 m-2 text-white bg-blue-500 rounded-md;
+  @apply px-6 py-4 m-2 text-white bg-slate-800 rounded-md shadow;
 }
 
+@media (min-width: 640px) {
+  .title {
+    @apply text-3xl;
+  }
+
+  .timer-text {
+    @apply text-9xl;
+  }
+
+  .colon {
+    @apply pb-8;
+  }
+
+  .control-button {
+    @apply px-8 py-6;
+  }
+}
 
 </style>
