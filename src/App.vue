@@ -4,10 +4,12 @@
 
 <template>
   <header>
-    I am the header
+    <div class="text-xl">
+      I am the header
+    </div>
   </header>
 
-  <main>
+  <main class="container">
     Some time 10: 32
   </main>
 </template>
