@@ -9,16 +9,16 @@
     <main class="container">
       <div class="timer-text">
         <div class="flex-container">
-          <span class="hour">00</span>
+          <span class="hour">{{ state.hour >= 10 ? state.hour : '0' + state.hour }}</span>
           <div class="colon">:</div>
-          <span class="minute">00</span>
+          <span class="minute">{{ state.minute >= 10 ? state.minute : '0' + state.minute }}</span>
           <div class="colon">:</div>
-          <span class="second">00</span>
+          <span class="second">{{ state.second >= 10 ? state.second : '0' + state.second }}</span>
         </div>
       </div>
 
       <div class="timer-controls">
-        <button class="control-button">
+        <button @click="startTimer()" class="control-button">
           <PlayIcon class="icon" />
         </button>
         <button class="control-button">
@@ -38,9 +38,36 @@ import PlayIcon from '@/components/PlayIcon.vue';
 import PauseIcon from '@/components/PauseIcon.vue';
 import RotateIcon from '@/components/RotateIcon.vue';
 
+import { reactive } from 'vue';
+
+const state = reactive({
+  hour: 0,
+  minute: 0,
+  second: 0,
+});
+
+const startTimer = () => {
+  setInterval(() => {
+    state.second++;
+  }, 1000);
+
+  setInterval(() => {
+    state.minute++;
+    state.second = 0;
+  }, 60000);
+
+  setInterval(() => {
+    state.hour++;
+    state.minute = 0;
+    state.second = 0;
+  }, 3600000);
+};
+
 </script>
 
 <style scoped>
+
+
 
 .title {
   @apply text-2xl font-bold text-center text-gray-300;
