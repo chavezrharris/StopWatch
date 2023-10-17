@@ -9,11 +9,11 @@
     <main class="container">
       <div class="timer-text">
         <div class="flex-container">
-          <span class="hour">{{ state.hour >= 10 ? state.hour : '0' + state.hour }}</span>
+          <span class="hour">{{ state.time.hour >= 10 ? state.time.hour : '0' + state.time.hour }}</span>
           <div class="colon">:</div>
-          <span class="minute">{{ state.minute >= 10 ? state.minute : '0' + state.minute }}</span>
+          <span class="minute">{{ state.time.minute >= 10 ? state.time.minute : '0' + state.time.minute }}</span>
           <div class="colon">:</div>
-          <span class="second">{{ state.second >= 10 ? state.second : '0' + state.second }}</span>
+          <span class="second">{{ state.time.second >= 10 ? state.time.second : '0' + state.time.second }}</span>
         </div>
       </div>
 
@@ -21,7 +21,7 @@
         <button @click="startTimer()" class="control-button">
           <PlayIcon class="icon" />
         </button>
-        <button class="control-button">
+        <button @click="pauseTimer"  class="control-button">
           <PauseIcon class="icon" />
         </button>
         <button class="control-button">
@@ -41,26 +41,33 @@ import RotateIcon from '@/components/RotateIcon.vue';
 import { reactive } from 'vue';
 
 const state = reactive({
-  hour: 0,
-  minute: 0,
-  second: 0,
+  time: {
+    hour: 0,
+    minute: 0,
+    second: 0,
+  },
+  interval: 0 as number,
 });
 
 const startTimer = () => {
-  setInterval(() => {
-    state.second++;
+  state.interval = setInterval(() => {
+    state.time.second++;
+    if (state.time.second === 60) {
+      state.time.second = 0;
+      state.time.minute++;
+    }
+    if (state.time.minute === 60) {
+      state.time.minute = 0;
+      state.time.hour++;
+    }
+    if (state.time.hour === 24) {
+      state.time.hour = 0;
+    }
   }, 1000);
+};
 
-  setInterval(() => {
-    state.minute++;
-    state.second = 0;
-  }, 60000);
-
-  setInterval(() => {
-    state.hour++;
-    state.minute = 0;
-    state.second = 0;
-  }, 3600000);
+const pauseTimer = () => {
+  clearInterval(state.interval);
 };
 
 </script>
