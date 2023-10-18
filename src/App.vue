@@ -24,7 +24,7 @@
         <button @click="pauseTimer"  class="control-button">
           <PauseIcon class="icon" />
         </button>
-        <button class="control-button">
+        <button @click="resetTimer" class="control-button">
           <RotateIcon class="icon" />
         </button>
       </div>
@@ -68,6 +68,14 @@ const startTimer = () => {
 
 const pauseTimer = () => {
   clearInterval(state.interval);
+};
+
+const resetTimer = () => {
+  state.time = {
+    hour: 0,
+    minute: 0,
+    second: 0,
+  };
 };
 
 </script>
