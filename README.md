@@ -6,6 +6,10 @@ After doing some fundamental learning on OOP concepts, I decided to create a sto
 - Stop
 - Reset
 
+## Live demo
+
+<https://chavez-stopwatch.netlify.app/>
+
 ## How to use
 
 - Clone the repo
